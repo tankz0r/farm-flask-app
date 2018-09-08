@@ -1,7 +1,28 @@
-{% extend "base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
-<h1> Please login </h1>
-
-
+    <h1> Please login </h1>
+    <form  method="POST" action="">
+        {{ form.hidden_tag() }}
+        <p>
+            {{form.user_name.label}}:<br>
+            {{form.user_name(size=32)}}<br>
+            {% for error in form.user_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{form.user_pswd.label}}:<br>
+            {{form.user_pswd(size=32)}}<br>
+            {% for error in form.user_pswd.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{form.keep_logged()}} {{form.keep_logged.label}}<br>
+        </p>
+        <p>
+            {{form.submit()}}
+        </p>
+    </form>
 {% endblock %}
